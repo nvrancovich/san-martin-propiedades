@@ -33,5 +33,5 @@ with left_column:
 feature_covered_surface_m2 = st.slider('Superficie cubierta en m2', 0.0, max(df['covered_surface_m2']), 1.0)  
 feature_bedrooms = st.slider('Cantidad de dormitorios', 0.0, max(df['bedrooms']), 1.0)  
 feature_bathrooms = st.slider('Cantidad de baños', 0.0, max(df['bathrooms']), 1.0)  
-feature_latitude = st.slider('Latitud en el mapa', min_value=min(df['latitude']), max_value=max(df['latitude']))  
-feature_longitude = st.slider('Longitud en el mapa', min_value=min(df['longitude']), max_value=max(df['longitude']))  
+feature_latitude = st.slider('Latitud en el mapa', min_value=min(df['latitude']), max_value=max(df['latitude']),step=0.0001)  
+feature_longitude = st.slider('Longitud en el mapa', min_value=min(df['longitude']), max_value=max(df['longitude']),step=0.0001)  

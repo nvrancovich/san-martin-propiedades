@@ -21,7 +21,9 @@ with left_column:
         'Tipo de propiedad:',
         np.unique(df['type']))
 
-st.text('Los diferentes segmentos pueden consultarse en el mapa haciendo [acá](https://www.google.com/maps/d/u/0/edit?mid=1D53sXpkQJc8f3ESd5F4SNj92LI0rsRk&usp=sharing)')
+st.write('Los diferentes segmentos pueden consultarse en el mapa haciendo [acá](https://www.google.com/maps/d/u/0/edit?mid=1D53sXpkQJc8f3ESd5F4SNj92LI0rsRk&usp=sharing)')
+
+left_column, right_column = st.columns(2)
 
 with left_column:
     feature_price_m2 = st.radio(
@@ -29,4 +31,7 @@ with left_column:
         np.unique(segments_avg['area']))
 
 feature_covered_surface_m2 = st.slider('Superficie cubierta en m2', 0.0, max(df['covered_surface_m2']), 1.0)  
-feature_covered_surface_m2 = st.slider('Superficie cubierta en m2', 0.0, max(df['covered_surface_m2']), 1.0)  
+feature_bedrooms = st.slider('Cantidad de dormitorios', 0.0, max(df['bedrooms']), 1.0)  
+feature_bathrooms = st.slider('Cantidad de baños', 0.0, max(df['bathrooms']), 1.0)  
+feature_latitude = st.slider('Latitud en el mapa', min(df['latitude']), max(df['latitude']), 1.0)  
+feature_longitude = st.slider('Longitud en el mapa', min(df['longitude']), max(df['longitude']), 1.0)  

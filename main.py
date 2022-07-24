@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from sklearn.ensemble import RandomForestRegressor
-import joblib
 
 df = pd.read_csv('features_propiedades_final.csv', index_col=0)
 segments_avg = pd.read_csv('promedios_segmentos.csv', index_col=0)
@@ -31,7 +29,7 @@ with left_column:
         np.unique(segments_avg['area']))
 
 feature_covered_surface_m2 = st.slider('Superficie cubierta en m2', 0.0, max(df['covered_surface_m2']), 1.0)  
-feature_bedrooms = st.slider('Cantidad de dormitorios', 0.0, max(df['bedrooms']), 1.0)  
-feature_bathrooms = st.slider('Cantidad de baños', 0.0, max(df['bathrooms']), 1.0)  
-feature_latitude = st.slider('Latitud en el mapa', min_value=min(df['latitude']), max_value=max(df['latitude']),step=0.0001)  
-feature_longitude = st.slider('Longitud en el mapa', min_value=min(df['longitude']), max_value=max(df['longitude']),step=0.0001)  
+feature_bedrooms = st.slider('Cantidad de dormitorios', min_value=0, max_value=max(df['bedrooms']))  
+feature_bathrooms = st.slider('Cantidad de baños', min_value=max(df['bathrooms']), max_value=max(df['bathrooms']))  
+feature_latitude = st.slider('Latitud en el mapa (aproximada)', min_value=min(df['latitude']), max_value=max(df['latitude']),step=0.0001)  
+feature_longitude = st.slider('Longitud en el mapa (aproximado)', min_value=min(df['longitude']), max_value=max(df['longitude']),step=0.0001)  

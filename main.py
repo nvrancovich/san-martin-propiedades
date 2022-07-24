@@ -12,7 +12,7 @@ st.header("Tasador de propiedades dentro del partido de General San Martín")
 st.text_input("Ingresá tu nombre: ", key="name")
 
 if st.checkbox('Mostrar muestra del set de datos de entrenamiento'):
-    df.head(20)
+    df[:30]
 
 st.subheader("Por favor ingresar las caracteristicas de la propiedad!")
 left_column, right_column = st.columns(2)

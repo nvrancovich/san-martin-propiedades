@@ -7,8 +7,9 @@ xgboost_regressor = xgb.XGBRegressor()
 xgboost_regressor.load_model("xgboost_regressor.json")
 
 df = pd.read_csv('features_propiedades_final.csv', index_col=0)
-segments_avg = pd.read_csv('promedios_segmentos.csv', index_col=0)
 propiety_tipes = {'Casa':'casa', 'Departamento':'departamento', 'Propiedad Horizontal':'ph'}
+segments_avg = pd.read_csv('promedios_segmentos.csv', index_col=0)
+segments_avg.to_dict()['price/m2']
 
 st.header("Cuanto Vale tu Propiedad: General San Martín")
 st.text_input("Ingresá tu nombre: ", key="name")
@@ -55,6 +56,8 @@ if st.button('Hacer predicción'):
         feature_ph = 1
     else:
         feature_ph = 0
+
+    feature_price_m2 = segments_avg[feature_covered_surface_m2]
 
     inputs = np.expand_dims(
         [feature_covered_surface_m2, 

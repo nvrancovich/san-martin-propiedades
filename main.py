@@ -56,7 +56,7 @@ if st.button('Hacer predicción'):
     else:
         feature_ph = 0
 
-    feature_price_m2 = segments_avg.to_dict()['price/m2'][feature_covered_surface_m2]
+    feature_price_m2 = segments_avg.to_dict()['price/m2'][feature_price_m2]
 
     inputs = np.expand_dims(
         [feature_covered_surface_m2, 

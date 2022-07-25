@@ -4,6 +4,7 @@ import numpy as np
 
 df = pd.read_csv('features_propiedades_final.csv', index_col=0)
 segments_avg = pd.read_csv('promedios_segmentos.csv', index_col=0)
+propiety_tipes = {'Casa':'casa', 'Departamento':'departamento', 'Propiedad Horizontal':'ph'}
 
 st.header("Cuanto Vale tu Propiedad: General San Martín")
 st.text_input("Ingresá tu nombre: ", key="name")
@@ -17,7 +18,7 @@ left_column, right_column = st.columns(2)
 with left_column:
     feature_type = st.radio(
         'Tipo de propiedad:',
-        np.unique(df['type']))
+        list(propiety_tipes.keys()))
 
 st.write('Los diferentes segmentos pueden consultarse en el mapa haciendo [acá](https://www.google.com/maps/d/u/0/edit?mid=1D53sXpkQJc8f3ESd5F4SNj92LI0rsRk&usp=sharing)')
 
@@ -33,3 +34,19 @@ feature_bedrooms = st.slider('Cantidad de dormitorios', min_value=min(df['bedroo
 feature_bathrooms = st.slider('Cantidad de baños', min_value=min(df['bathrooms']), max_value=max(df['bathrooms']), step = 1.0)  
 feature_latitude = st.slider('Latitud en el mapa (aproximada)', min_value=min(df['latitude']), max_value=max(df['latitude']),step=0.0001)  
 feature_longitude = st.slider('Longitud en el mapa (aproximado)', min_value=min(df['longitude']), max_value=max(df['longitude']),step=0.0001)  
+
+if st.button('Hacer predicción'):
+    st.write('El valor estimado para los valores proporcionados es:')
+
+
+
+
+
+
+
+
+
+
+
+
+

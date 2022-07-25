@@ -1,6 +1,10 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import xgboost as xgb
+
+xgboost_regressor = xgb.XGBRegressor()
+xgboost_regressor.load_model("xgboost_regressor.json")
 
 df = pd.read_csv('features_propiedades_final.csv', index_col=0)
 segments_avg = pd.read_csv('promedios_segmentos.csv', index_col=0)
@@ -20,6 +24,7 @@ with left_column:
         'Tipo de propiedad:',
         list(propiety_tipes.keys()))
 
+
 st.write('Los diferentes segmentos pueden consultarse en el mapa haciendo [acá](https://www.google.com/maps/d/u/0/edit?mid=1D53sXpkQJc8f3ESd5F4SNj92LI0rsRk&usp=sharing)')
 
 left_column, right_column = st.columns(2)
@@ -36,7 +41,33 @@ feature_latitude = st.slider('Latitud en el mapa (aproximada)', min_value=min(df
 feature_longitude = st.slider('Longitud en el mapa (aproximado)', min_value=min(df['longitude']), max_value=max(df['longitude']),step=0.0001)  
 
 if st.button('Hacer predicción'):
-    st.write('El valor estimado para los valores proporcionados es:')
+
+    feature_type = propiety_tipes[feature_type]
+    if feature_type == 'casa':
+        feature_casa = 1
+    else:
+        feature_casa = 0
+    if feature_type == 'departamento':
+        feature_dpto = 1
+    else:
+        feature_dpto = 0
+    if feature_type == 'ph':
+        feature_ph = 1
+    else:
+        feature_ph = 0
+
+    inputs = np.expand_dims(
+        [feature_covered_surface_m2, 
+        feature_bedrooms, 
+        feature_price_m2,
+        feature_bathrooms, 
+        feature_latitude, 
+        feature_longitude, 
+        feature_casa, 
+        feature_dpto, 
+        feature_ph], 0)
+
+    st.write(inputs)
 
 
 

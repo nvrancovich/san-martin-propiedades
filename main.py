@@ -8,7 +8,7 @@ xgboost_regressor.load_model("xgboost_regressor.json")
 
 df = pd.read_csv('features_propiedades_final.csv', index_col=0)
 propiety_tipes = {'Casa':'casa', 'Departamento':'departamento', 'Propiedad Horizontal':'ph'}
-segments_avg = pd.read_csv('promedios_segmentos.csv', index_col=0)
+segments_avg = pd.read_csv('promedios_segmentos.csv', index_col=0,usecols=['area','price/m2'])
 segments_avg.to_dict()['price/m2']
 
 st.header("Cuanto Vale tu Propiedad: General San Martín")

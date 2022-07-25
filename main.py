@@ -69,7 +69,9 @@ if st.button('Hacer predicción'):
         feature_dpto, 
         feature_ph], 0)
 
-    st.write(inputs)
+    prediction = xgboost_regressor.predict(inputs)
+
+    st.write(prediction)
 
 
 

@@ -74,7 +74,7 @@ if st.button('Hacer predicción'):
 
     prediction = float(xgboost_regressor.predict(inputs))
     print('prediction:', round(prediction),-3)
-    st.write(f'El valor estimado es de ${round(prediction, -3):,}')
+    st.write(f'El valor estimado es de ${round(prediction, -3):,d}.'.replace(',','.'))
     st.write(f'¡Gracias por utilizar mi aplicación!')
     st.write(f'Si te gustó, podés seguirme en [Medium](https://medium.com/@nvrancovich) para más contenido similar')
 

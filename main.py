@@ -40,8 +40,8 @@ feature_bathrooms = st.slider('Cantidad de baños:', min_value=min(df['bathrooms
 
 st.write('Si no sabés como averiguar las coordenadas geográficas, te dejo un ejemplo de 10 segundos [acá](https://youtube.com/shorts/iiJCZwrW3ps?feature=share).')
 
-feature_latitude = st.slider('Latitud en el mapa (aproximada):', min_value=min(df['latitude']), max_value=max(df['latitude']),step=0.01)  
-feature_longitude = st.slider('Longitud en el mapa (aproximado):', min_value=min(df['longitude']), max_value=max(df['longitude']),step=0.01)  
+feature_latitude = st.slider('Latitud en el mapa (aproximada)', min_value=min(df['latitude']), max_value=max(df['latitude']),step=0.01)  
+feature_longitude = st.slider('Longitud en el mapa (aproximado)', min_value=min(df['longitude']), max_value=max(df['longitude']),step=0.01)  
 
 if st.button('Hacer predicción'):
 

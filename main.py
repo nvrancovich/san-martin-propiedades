@@ -6,17 +6,9 @@ import xgboost as xgb
 xgboost_regressor = xgb.XGBRegressor()
 xgboost_regressor.load_model("xgboost_regressor.json")
 
-df = pd.read_csv('propiedades.csv', index_col=0)
+df = pd.read_csv('propiedades_limpio.csv', index_col=0)
 propiety_tipes = {'Casa':'casa', 'Departamento':'departamento', 'Propiedad Horizontal':'ph'}
 segments_avg = pd.read_csv('promedios_segmentos.csv', index_col=0,usecols=['area','price/m2'])
-
-df['bathrooms'] = df['bathrooms'].fillna(1)
-df.dropna(subset=['bedrooms'], axis=0, inplace=True)
-df.dropna(subset=['latitude'], axis=0, inplace=True)
-df.dropna(subset=['covered_surface_m2'], axis=0, inplace=True)
-df = df[df.bedrooms < 10]
-df = df[['price_USD','type','covered_surface_m2','bedrooms','bathrooms','latitude','longitude']]
-df.reset_index(drop=True, inplace=True)
 
 st.header("Cuanto Vale tu Propiedad: General San Martín")
 st.text_input("Ingresá tu nombre: ", key="name")

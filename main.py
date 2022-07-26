@@ -14,7 +14,6 @@ df['bathrooms'] = df['bathrooms'].fillna(1)
 df.dropna(subset=['bedrooms'], axis=0, inplace=True)
 df.dropna(subset=['latitude'], axis=0, inplace=True)
 df.dropna(subset=['covered_surface_m2'], axis=0, inplace=True)
-df.dropna(subset=['price_USD'], axis=0, inplace=True)
 df = df[df.bedrooms < 10]
 df = df[['price_USD','type','covered_surface_m2','bedrooms','price/m2','bathrooms','latitude','longitude']]
 df.reset_index(drop=True, inplace=True)

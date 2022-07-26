@@ -15,7 +15,7 @@ df.dropna(subset=['bedrooms'], axis=0, inplace=True)
 df.dropna(subset=['latitude'], axis=0, inplace=True)
 df.dropna(subset=['covered_surface_m2'], axis=0, inplace=True)
 df = df[df.bedrooms < 10]
-df = df[['price_USD','type','covered_surface_m2','bedrooms','price/m2','bathrooms','latitude','longitude']]
+df = df[['price_USD','type','covered_surface_m2','bedrooms','bathrooms','latitude','longitude']]
 df.reset_index(drop=True, inplace=True)
 
 st.header("Cuanto Vale tu Propiedad: General San Martín")

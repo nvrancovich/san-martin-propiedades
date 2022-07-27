@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import xgboost as xgb
-import smtplib
 
 xgboost_regressor = xgb.XGBRegressor()
 xgboost_regressor.load_model("xgboost_regressor.json")
@@ -15,7 +14,6 @@ segments_centroids_lat = segments_centroids['latitude'].to_dict()
 segments_centroids_lon = segments_centroids['longitude'].to_dict()
 
 st.header("Cuanto Vale tu Propiedad: General San Martín")
-name = st.text_input("Ingresá tu nombre: ", key="name")
 
 if st.checkbox('Ver muestra del set de datos de entrenamiento'):
     df[:30]
@@ -39,7 +37,7 @@ with left_column:
         np.unique(segments_avg.index))
 
 feature_covered_surface_m2 = st.slider('Superficie cubierta en m2:', min_value=min(df['covered_surface_m2']), max_value=max(df['covered_surface_m2']), step = 1.0)  
-feature_bedrooms = st.slider('Cantidad de dormitorios:', min_value=min(df['bedrooms']), max_value=max(df['bedrooms']), step = 1.0)  
+feature_bedrooms = st.slider('Cantidad de dormitorios (0 si es un monoambiente):', min_value=min(df['bedrooms']), max_value=max(df['bedrooms']), step = 1.0)  
 feature_bathrooms = st.slider('Cantidad de baños:', min_value=min(df['bathrooms']), max_value=max(df['bathrooms']), step = 1.0)  
 
 feature_latitude = segments_centroids_lat[feature_segment]
@@ -79,10 +77,6 @@ if st.button('Hacer predicción'):
     st.write((f'El valor estimado es de ${int(round(prediction, -3)):,d}.').replace(',','.'))
     st.write(f'¡Gracias por utilizar mi aplicación!')
     st.write(f'Si te gustó, podés seguirme en [Medium](https://medium.com/@nvrancovich) para más contenido similar')
-
-    s = smtplib.SMTP('localhost')
-    s.sendmail('san_martin_propiedades@python.com', ['nvrancovich@gmail.com'], name)
-    s.quit()
 
 
 

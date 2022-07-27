@@ -42,12 +42,8 @@ feature_covered_surface_m2 = st.slider('Superficie cubierta en m2:', min_value=m
 feature_bedrooms = st.slider('Cantidad de dormitorios:', min_value=min(df['bedrooms']), max_value=max(df['bedrooms']), step = 1.0)  
 feature_bathrooms = st.slider('Cantidad de baños:', min_value=min(df['bathrooms']), max_value=max(df['bathrooms']), step = 1.0)  
 
-st.write('Si no sabés como averiguar las coordenadas geográficas, te dejo un ejemplo de 10 segundos [acá](https://youtube.com/shorts/iiJCZwrW3ps?feature=share).')
-
 feature_latitude = segments_centroids_lat[feature_segment]
 feature_longitude = segments_centroids_lon[feature_segment]
-
-st.write(feature_latitude, feature_longitude)
 
 if st.button('Hacer predicción'):
 
@@ -85,7 +81,7 @@ if st.button('Hacer predicción'):
     st.write(f'Si te gustó, podés seguirme en [Medium](https://medium.com/@nvrancovich) para más contenido similar')
 
     s = smtplib.SMTP('localhost')
-    s.sendmail(me, [you], name)
+    s.sendmail('san_martin_propiedades@python.com', ['nvrancovich@gmail.com'], name)
     s.quit()
 
 

@@ -15,10 +15,12 @@ segments_centroids_lon = segments_centroids['longitude'].to_dict()
 
 st.header("Cuanto Vale tu Propiedad: General San Martín")
 
+st.write('Los diferentes segmentos pueden consultarse en el mapa tocando [acá](https://www.google.com/maps/d/u/0/edit?mid=1D53sXpkQJc8f3ESd5F4SNj92LI0rsRk&usp=sharing) (tener abierto Google Maps previamente).')
+
 if st.checkbox('Ver muestra del set de datos de entrenamiento'):
     df[:30]
 
-st.subheader("Ingresar características de la propiedad:")
+st.subheader("Ingresar las características de la propiedad:")
 
 left_column, right_column = st.columns(2)
 with left_column:
@@ -26,8 +28,6 @@ with left_column:
         'Tipo de propiedad:',
         list(propiety_tipes.keys()))
 
-
-st.write('Los diferentes segmentos pueden consultarse en el mapa tocando [acá](https://www.google.com/maps/d/u/0/edit?mid=1D53sXpkQJc8f3ESd5F4SNj92LI0rsRk&usp=sharing) (tener abierto Google Maps previamente).')
 
 left_column, right_column = st.columns(2)
 

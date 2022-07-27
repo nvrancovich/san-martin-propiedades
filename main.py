@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import xgboost as xgb
+import smtplib
 
 xgboost_regressor = xgb.XGBRegressor()
 xgboost_regressor.load_model("xgboost_regressor.json")
@@ -9,9 +10,12 @@ xgboost_regressor.load_model("xgboost_regressor.json")
 df = pd.read_csv('propiedades_limpio.csv', index_col=0)
 propiety_tipes = {'Casa':'casa', 'Departamento':'departamento', 'Propiedad Horizontal':'ph'}
 segments_avg = pd.read_csv('promedios_segmentos.csv', index_col=0,usecols=['area','price/m2'])
+segments_centroids = pd.read_csv('segmentos_centroides.csv', index_col=0)
+segments_centroids_lat = segments_centroids['latitude'].to_dict()
+segments_centroids_lon = segments_centroids['longitude'].to_dict()
 
 st.header("Cuanto Vale tu Propiedad: General San Martín")
-st.text_input("Ingresá tu nombre: ", key="name")
+name = st.text_input("Ingresá tu nombre: ", key="name")
 
 if st.checkbox('Ver muestra del set de datos de entrenamiento'):
     df[:30]
@@ -30,7 +34,7 @@ st.write('Los diferentes segmentos pueden consultarse en el mapa tocando [acá](
 left_column, right_column = st.columns(2)
 
 with left_column:
-    feature_price_m2 = st.radio(
+    feature_segment = st.radio(
         'Segmento donde se encuentra la propiedad:',
         np.unique(segments_avg.index))
 
@@ -40,8 +44,10 @@ feature_bathrooms = st.slider('Cantidad de baños:', min_value=min(df['bathrooms
 
 st.write('Si no sabés como averiguar las coordenadas geográficas, te dejo un ejemplo de 10 segundos [acá](https://youtube.com/shorts/iiJCZwrW3ps?feature=share).')
 
-feature_latitude = st.slider('Latitud en el mapa (aproximada)', min_value=min(df['latitude']), max_value=max(df['latitude']),step=0.01)  
-feature_longitude = st.slider('Longitud en el mapa (aproximado)', min_value=min(df['longitude']), max_value=max(df['longitude']),step=0.01)  
+feature_latitude = segments_centroids_lat[feature_segment]
+feature_longitude = segments_centroids_lon[feature_segment]
+
+st.write(feature_latitude, feature_longitude)
 
 if st.button('Hacer predicción'):
 
@@ -59,7 +65,7 @@ if st.button('Hacer predicción'):
     else:
         feature_ph = 0
 
-    feature_price_m2 = segments_avg.to_dict()['price/m2'][feature_price_m2]
+    feature_price_m2 = segments_avg.to_dict()['price/m2'][feature_segment]
 
     inputs = np.expand_dims(
         [feature_covered_surface_m2, 
@@ -77,6 +83,10 @@ if st.button('Hacer predicción'):
     st.write((f'El valor estimado es de ${int(round(prediction, -3)):,d}.').replace(',','.'))
     st.write(f'¡Gracias por utilizar mi aplicación!')
     st.write(f'Si te gustó, podés seguirme en [Medium](https://medium.com/@nvrancovich) para más contenido similar')
+
+    s = smtplib.SMTP('localhost')
+    s.sendmail(me, [you], name)
+    s.quit()
 
 
 

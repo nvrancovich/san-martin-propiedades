@@ -1,6 +1,6 @@
-# san_martin_propiedades_geodatos
+# san_martin_propiedades
 
-Este repositorio esta destinado a al extracción, análisis exploratorio y predicción de los valores de las propiedades en venta ubicadas en el partido de General San Martín, Provincia de Buenos Aires, Argentina.
+Este repositorio esta destinado a la extracción, análisis exploratorio y predicción de los valores de las propiedades en venta ubicadas en el partido de General San Martín, Provincia de Buenos Aires, Argentina.
 
 ## Roadmap
 

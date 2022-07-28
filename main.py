@@ -36,7 +36,7 @@ with left_column:
         'Segmento donde se encuentra la propiedad:',
         np.unique(segments_avg.index))
 
-feature_covered_surface_m2 = st.number_input('Superficie cubierta en m2:', min_value=min(df['covered_surface_m2']), max_value=max(df['covered_surface_m2']), step = 1.0)  
+feature_covered_surface_m2 = st.number_input('Superficie cubierta en m2:', value=80, min_value=min(df['covered_surface_m2']), max_value=max(df['covered_surface_m2']), step = 1.0)  
 feature_bedrooms = st.slider('Cantidad de dormitorios (0 si es un monoambiente):', min_value=min(df['bedrooms']), max_value=max(df['bedrooms']), step = 1.0)  
 feature_bathrooms = st.slider('Cantidad de baños:', min_value=min(df['bathrooms']), max_value=max(df['bathrooms']), step = 1.0)  
 

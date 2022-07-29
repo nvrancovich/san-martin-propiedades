@@ -15,6 +15,8 @@ segments_centroids_lon = segments_centroids['longitude'].to_dict()
 
 st.header("Cuanto Vale tu Propiedad: General San Martín")
 
+st.write('Por Nicolás Vrancovich')
+
 st.write('Los diferentes segmentos pueden consultarse en el mapa tocando [acá](https://www.google.com/maps/d/u/0/edit?mid=1D53sXpkQJc8f3ESd5F4SNj92LI0rsRk&usp=sharing) (tener abierto Google Maps previamente).')
 
 if st.checkbox('Ver muestra del set de datos de entrenamiento'):
